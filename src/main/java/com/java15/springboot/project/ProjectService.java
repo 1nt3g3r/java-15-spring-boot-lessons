@@ -1,5 +1,6 @@
 package com.java15.springboot.project;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,11 @@ import java.util.Random;
 @Service
 public class ProjectService {
     private final ProjectRepository projectRepository;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("projectRepository.getClass() = " + projectRepository.getClass());
+    }
 
     public Project getById(long id) {
         return projectRepository.findById(id).orElse(null);

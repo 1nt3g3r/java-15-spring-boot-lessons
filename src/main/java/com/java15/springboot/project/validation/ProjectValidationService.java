@@ -22,6 +22,6 @@ public class ProjectValidationService {
     }
 
     public boolean isProjectWithThisNameExists(String name) {
-        return repository.findAll().stream().anyMatch(it -> it.getName().equals(name));
+        return repository.isProjectWithNameExists(name);
     }
 }
