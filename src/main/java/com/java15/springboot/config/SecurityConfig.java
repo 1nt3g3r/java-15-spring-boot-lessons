@@ -33,6 +33,7 @@ public class SecurityConfig {
 
         http.authorizeRequests(authorizeRequests ->
                         authorizeRequests
+                                .requestMatchers("/api/v1/auth/getUserInfo").permitAll()
                                 .requestMatchers("/lang/api/**").permitAll()
                                 .requestMatchers("/lang/list").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated())
