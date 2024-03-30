@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.3'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'checkstyle' // Add the Checkstyle plugin here
 }
 
 group = 'com.java15'
@@ -34,6 +35,25 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
+// Checkstyle configuration
+checkstyle {
+	toolVersion = '8.29' // Specify the Checkstyle version you want to use
+	configFile = file('config/checkstyle/checkstyle.xml') // Path to your Checkstyle configuration file
+	ignoreFailures = false // Set to true if you want the build to continue even if there are Checkstyle violations
+	showViolations = true // Set to false if you don't want to show Checkstyle violations in the console output
+}
+
+tasks.named('checkstyleMain').configure {
+	dependsOn 'assemble'
+	description = 'Runs Checkstyle on the main source set.'
+	group = 'verification'
+}
+
+tasks.named('checkstyleTest').configure {
+	dependsOn 'testClasses'
+	description = 'Runs Checkstyle on the test source set.'
+	group = 'verification'
+}
 
 tasks.named('test') {
 	useJUnitPlatform()

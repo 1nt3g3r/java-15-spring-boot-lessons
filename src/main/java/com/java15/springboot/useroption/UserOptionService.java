@@ -27,7 +27,7 @@ public class UserOptionService {
 
         for (int i = 0; i < 10; i++) {
 
-            for(int j = 0; j < 5; j++) {
+            for (int j = 0; j < 5; j++) {
                 UserOption option = new UserOption();
                 option.setUsername("user" + i);
                 option.setOption("option" + j);
